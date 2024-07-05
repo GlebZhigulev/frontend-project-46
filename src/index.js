@@ -1,37 +1,24 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import parseData from './parser.js'
-import _ from 'lodash'
 
-const readData = (filepath) => {
-  const dirName = process.cwd(filepath)
-  const resolvedPath = path.resolve(dirName, filepath)
-  return fs.readFileSync(resolvedPath, 'utf-8')
-}
+import { readData, generateDiff } from './utils.js'
 
 const genDiff = (filepath1, filepath2) => {
   const data1 = readData(filepath1)
   const data2 = readData(filepath2)
 
-  const firstData = parseData(data1)
-  const secondData = parseData(data2)
+  const ext1 = path.extname(filepath1)
+  const ext2 = path.extname(filepath2)
 
-  const keys = _.union(Object.keys(firstData), Object.keys(secondData))
-  const sortedKeys = _.sortBy(keys)
-  const diff = sortedKeys.map((key) => {
-    if (_.has(firstData, key) && _.has(secondData, key)) {
-      if (_.isEqual(firstData[key], secondData[key])) {
-        return `  ${key}: ${firstData[key]}`
-      }
-      return `- ${key}: ${firstData[key]}\n+ ${key}: ${secondData[key]}`
-    }
-    if (_.has(firstData, key)) {
-      return `- ${key}: ${firstData[key]}`
-    }
-    return `+ ${key}: ${secondData[key]}`
-  })
+  const firstData = parseData(data1, ext1)
+  const secondData = parseData(data2, ext2)
 
-  return `{\n${diff.join('\n')}\n}`
+  const result = generateDiff(firstData, secondData)
+  const outputFilePath = path.resolve(process.cwd(), '__fixtures__/fileOutput.txt')
+  fs.writeFileSync(outputFilePath, result)
+
+  return result
 }
 
 export default genDiff

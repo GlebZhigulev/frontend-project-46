@@ -1,26 +1,17 @@
-import url from 'url'
-import path, { dirname } from 'node:path'
+import { fileURLToPath } from 'url'
 import fs from 'fs'
-import gendiff from '../src/index.js'
+import path from 'path'
+import genDiff from '../src/index.js'
 
-const __filename = url.fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename)
-const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8')
+const getPath = (filename) => path.join(__dirname, '..', '__fixtures__', filename)
+const readFile = (filename) => fs.readFileSync(getPath(filename), 'utf-8')
 
-const fileOutput = readFile('fileOutput.txt')
-const file1 = './__fixtures__/file1.json'
-const file2 = './__fixtures__/file2.json'
-
-describe('comparing files', () => {
-  test('JSON files', () => {
-    const diff = gendiff(file1, file2).trim()
-    // Сравнение построчно
-    const diffLines = diff.split('\n')
-    const expectedLines = fileOutput.split('\n')
-    diffLines.forEach((line, index) => {
-      expect(line.trim()).toEqual(expectedLines[index].trim())
-    })
-  })
+test.each([
+  ['json', readFile('fileOutput.txt')],
+  ['yml', readFile('fileOutput.txt')]
+])('gendiff json and yml formats', (extension, expected) => {
+  expect(genDiff(getPath(`file1.${extension}`), getPath(`file2.${extension}`))).toEqual(expected)
 })
