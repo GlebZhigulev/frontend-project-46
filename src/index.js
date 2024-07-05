@@ -6,7 +6,7 @@ import _ from 'lodash'
 const readData = (filepath) => {
   const dirName = process.cwd(filepath)
   const resolvedPath = path.resolve(dirName, filepath)
-  return fs.readFileSync(resolvedPath, 'utf-8');
+  return fs.readFileSync(resolvedPath, 'utf-8')
 }
 
 const genDiff = (filepath1, filepath2) => {
@@ -28,7 +28,7 @@ const genDiff = (filepath1, filepath2) => {
     if (_.has(firstData, key)) {
       return `- ${key}: ${firstData[key]}`
     }
-    return `+ ${key}: ${secondData[key]}` 
+    return `+ ${key}: ${secondData[key]}`
   })
 
   return `{\n${diff.join('\n')}\n}`

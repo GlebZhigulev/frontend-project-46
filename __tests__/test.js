@@ -14,13 +14,13 @@ const file1 = './__fixtures__/file1.json'
 const file2 = './__fixtures__/file2.json'
 
 describe('comparing files', () => {
-  test('test JSON files', () => {
-    const diff = gendiff(file1, file2).trim();
+  test('JSON files', () => {
+    const diff = gendiff(file1, file2).trim()
     // Сравнение построчно
-    const diffLines = diff.split('\n');
-    const expectedLines = fileOutput.split('\n');
+    const diffLines = diff.split('\n')
+    const expectedLines = fileOutput.split('\n')
     diffLines.forEach((line, index) => {
-      expect(line.trim()).toEqual(expectedLines[index].trim());
-    });
-  });
-});
+      expect(line.trim()).toEqual(expectedLines[index].trim())
+    })
+  })
+})
