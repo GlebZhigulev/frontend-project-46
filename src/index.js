@@ -28,7 +28,7 @@ const genDiff = (filepath1, filepath2) => {
     if (_.has(firstData, key)) {
       return `- ${key}: ${firstData[key]}`
     }
-    return `+ ${key}: ${secondData[key]}`
+    return `+ ${key}: ${secondData[key]}` 
   })
 
   return `{\n${diff.join('\n')}\n}`
