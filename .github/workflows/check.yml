@@ -1,4 +1,4 @@
-name: check project 2
+name: check-project
 # on – определяет события, которые запускают воркфлоу
 on: push
 jobs:
