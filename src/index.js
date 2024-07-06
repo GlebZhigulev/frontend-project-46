@@ -1,10 +1,10 @@
-import * as fs from 'fs'
 import * as path from 'path'
 import parseData from './parser.js'
 
 import { readData, generateDiff } from './utils.js'
+import { formatStylish } from './stylish.js'
 
-const genDiff = (filepath1, filepath2) => {
+const genDiff = (filepath1, filepath2, option = 'stylish') => {
   const data1 = readData(filepath1)
   const data2 = readData(filepath2)
 
@@ -14,9 +14,10 @@ const genDiff = (filepath1, filepath2) => {
   const firstData = parseData(data1, ext1)
   const secondData = parseData(data2, ext2)
 
-  const result = generateDiff(firstData, secondData)
-  const outputFilePath = path.resolve(process.cwd(), '__fixtures__/fileOutput.txt')
-  fs.writeFileSync(outputFilePath, result)
+  const objectDiff = generateDiff(firstData, secondData)
+  /* const outputFilePath = path.resolve(process.cwd(), '__fixtures__/fileOutput.txt')
+  fs.writeFileSync(outputFilePath, result) */
+  const result = formatStylish(objectDiff)
 
   return result
 }
