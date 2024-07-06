@@ -10,8 +10,10 @@ const getPath = (filename) => path.join(__dirname, '..', '__fixtures__', filenam
 const readFile = (filename) => fs.readFileSync(getPath(filename), 'utf-8')
 
 test.each([
-  ['json', readFile('fileOutput.txt')],
-  ['yml', readFile('fileOutput.txt')]
-])('gendiff json and yml formats', (extension, expected) => {
-  expect(genDiff(getPath(`file1.${extension}`), getPath(`file2.${extension}`))).toEqual(expected)
+  ['json', 'stylish', readFile('fileOutputStylish.txt')],
+  ['yml', 'stylish', readFile('fileOutputStylish.txt')],
+  ['json', 'plain', readFile('fileOutputPlain.txt')],
+  ['yml', 'plain', readFile('fileOutputPlain.txt')]
+])('all test gendiff', (extension, format, expected) => {
+  expect(genDiff(getPath(`file1.${extension}`), getPath(`file2.${extension}`), format)).toEqual(expected)
 })

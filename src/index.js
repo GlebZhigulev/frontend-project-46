@@ -1,8 +1,8 @@
 import * as path from 'path'
 import parseData from './parser.js'
-
+import fs from 'fs'
 import { readData, generateDiff } from './utils.js'
-import { formatStylish } from './stylish.js'
+import makeFormat from './formatters/index.js'
 
 const genDiff = (filepath1, filepath2, option = 'stylish') => {
   const data1 = readData(filepath1)
@@ -15,9 +15,9 @@ const genDiff = (filepath1, filepath2, option = 'stylish') => {
   const secondData = parseData(data2, ext2)
 
   const objectDiff = generateDiff(firstData, secondData)
-  /* const outputFilePath = path.resolve(process.cwd(), '__fixtures__/fileOutput.txt')
-  fs.writeFileSync(outputFilePath, result) */
-  const result = formatStylish(objectDiff)
+  const result = makeFormat(objectDiff, option)
+  const outputFilePath = path.resolve(process.cwd(), '__fixtures__/fileOutputPlain.txt')
+  fs.writeFileSync(outputFilePath, result)
 
   return result
 }
