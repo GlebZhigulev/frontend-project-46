@@ -15,7 +15,7 @@ test.each([
   ['json', 'plain', readFile('fileOutputPlain.txt')],
   ['yml', 'plain', readFile('fileOutputPlain.txt')],
   ['json', 'json', readFile('fileOutputJson.txt')],
-  ['yml', 'json', readFile('fileOutputJson.txt')],
+  ['yml', 'json', readFile('fileOutputJson.txt')]
 ])('all test gendiff', (extension, format, expected) => {
   expect(genDiff(getPath(`file1.${extension}`), getPath(`file2.${extension}`), format)).toEqual(expected)
-});
+})

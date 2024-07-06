@@ -1,11 +1,9 @@
 import * as path from 'path'
 import parseData from './parser.js'
-import fs from 'fs'
 import { readData, generateDiff } from './utils.js'
 import makeFormat from './formatters/index.js'
 
 const genDiff = (filepath1, filepath2, option = 'stylish') => {
-  
   const data1 = readData(filepath1)
   const data2 = readData(filepath2)
 
@@ -17,7 +15,7 @@ const genDiff = (filepath1, filepath2, option = 'stylish') => {
 
   const objectDiff = generateDiff(firstData, secondData)
   const result = makeFormat(objectDiff, option)
-  
+
   return result
 }
 
