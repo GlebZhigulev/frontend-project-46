@@ -2,10 +2,7 @@ const formatStylish = (diff, depth = 0) => {
   const indent = ' '.repeat(depth * 4)
 
   const lines = diff.map((node) => {
-    const {
-      key, type, value, oldValue, newValue, children
-    } = node
-
+    const { key, type, value, oldValue, newValue, children } = node
     switch (type) {
       case 'added':
         return `${indent}  + ${key}: ${formatValue(value, depth + 1)}`
@@ -31,9 +28,7 @@ const formatStylish = (diff, depth = 0) => {
 const formatValue = (value, depth) => {
   if (typeof value === 'object' && value !== null) {
     const indent = ' '.repeat(depth * 4)
-    const lines = Object.entries(value).map(
-      ([key, val]) => `${indent}    ${key}: ${formatValue(val, depth + 1)}`
-    )
+    const lines = Object.entries(value).map(([key, val]) => `${indent}    ${key}: ${formatValue(val, depth + 1)}`)
     return `{\n${lines.join('\n')}\n${indent}}`
   }
   return value
