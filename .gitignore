@@ -2,4 +2,4 @@
 coverage
 .npmrc
 .eslintrc.json
-jest.config.mjs
+
