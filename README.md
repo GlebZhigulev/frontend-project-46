@@ -50,4 +50,4 @@ gendiff [options] <filepath1> <filepath2>
 ### Examples:
 
 ## Compare .json and .yml files with different formats:
-
+[![asciicast](https://asciinema.org/a/prEMK7BFADkMq30M9RFms1Mtj.svg)](https://asciinema.org/a/prEMK7BFADkMq30M9RFms1Mtj)
