@@ -12,7 +12,9 @@ const formatValue = (value) => {
 
 const formatPlain = (diff, parent = '') => {
   const lines = diff.flatMap((node) => {
-    const { key, type, value, oldValue, newValue, children } = node
+    const {
+      key, type, value, oldValue, newValue, children
+    } = node
     const property = parent ? `${parent}.${key}` : key
 
     switch (type) {
