@@ -9,26 +9,26 @@
 
 ___
 
-### Description:
+# Description:
 
 gendiff is a command-line utility for comparing configuration files in JSON and YAML formats. The program supports three output formats: stylish, plain, and json.
 
 ---
 
-### Required:
+# Required:
 
 NodeJS version: any
 
 ---
 
-### Installation:
+# Installation:
 
 ```bash
 make install
 ```
 ---
 
-### Usage:
+# Usage:
 
 To use gendiff via the command line, run the following command:
 
@@ -47,7 +47,7 @@ gendiff [options] <filepath1> <filepath2>
 * `-h, --help` — output usage information.
 
 ---
-### Examples:
+# Example:
 
 ## Compare .json and .yml files with different formats:
 [![asciicast](https://asciinema.org/a/prEMK7BFADkMq30M9RFms1Mtj.svg)](https://asciinema.org/a/prEMK7BFADkMq30M9RFms1Mtj)
