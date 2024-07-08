@@ -9,7 +9,7 @@ const readData = (filepath) => {
 }
 
 const generateDiff = (obj1, obj2) => {
-  const keys = _.union(_.keys(obj1), _.keys(obj2))
+  const keys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)))
   const diff = keys.map((key) => {
     if (!_.has(obj1, key)) {
       return { key, type: 'added', value: obj2[key] }
