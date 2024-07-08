@@ -1,5 +1,4 @@
 import * as path from 'path'
-import fs from 'fs'
 import parseData from './parser.js'
 import { readData, generateDiff } from './utils.js'
 import makeFormat from './formatters/index.js'
