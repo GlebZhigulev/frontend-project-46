@@ -1,15 +1,15 @@
-import { formatStylish } from './stylish.js'
-import { formatPlain } from './plain.js'
+import formatStylish from './stylish.js';
+import formatPlain from './plain.js';
 
-export default function makeFormat (object, formatName = 'stylish') {
+export default function makeFormat(object, formatName = 'stylish') {
   switch (formatName) {
     case 'stylish':
-      return formatStylish(object)
+      return formatStylish(object);
     case 'plain':
-      return formatPlain(object)
+      return formatPlain(object);
     case 'json':
-      return JSON.stringify(object)
+      return JSON.stringify(object);
     default:
-      throw new Error('Output format is not correct')
+      throw new Error('Output format is not correct');
   }
 }

@@ -1,37 +1,39 @@
-import _ from 'lodash'
+import _ from 'lodash';
 
 const formatValue = (value) => {
   if (_.isObject(value)) {
-    return '[complex value]'
+    return '[complex value]';
   }
   if (typeof value === 'string') {
-    return `'${value}'`
+    return `'${value}'`;
   }
-  return String(value)
-}
+  return String(value);
+};
 
 const formatPlain = (diff, parent = '') => {
   const lines = diff.flatMap((node) => {
-    const { key, type, value, oldValue, newValue, children } = node
-    const property = parent ? `${parent}.${key}` : key
+    const {
+      key, type, value, oldValue, newValue, children,
+    } = node;
+    const property = parent ? `${parent}.${key}` : key;
 
     switch (type) {
       case 'added':
-        return `Property '${property}' was added with value: ${formatValue(value)}`
+        return `Property '${property}' was added with value: ${formatValue(value)}`;
       case 'removed':
-        return `Property '${property}' was removed`
+        return `Property '${property}' was removed`;
       case 'changed':
-        return `Property '${property}' was updated. From ${formatValue(oldValue)} to ${formatValue(newValue)}`
+        return `Property '${property}' was updated. From ${formatValue(oldValue)} to ${formatValue(newValue)}`;
       case 'nested':
-        return formatPlain(children, property)
+        return formatPlain(children, property);
       case 'unchanged':
-        return []
+        return [];
       default:
-        throw new Error(`Unknown type: ${type}`)
+        throw new Error(`Unknown type: ${type}`);
     }
-  })
+  });
 
-  return lines.join('\n')
-}
+  return lines.join('\n');
+};
 
-export { formatPlain }
+export default formatPlain;
