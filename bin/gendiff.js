@@ -13,7 +13,6 @@ program
   })
   .parse(process.argv)
 
-// Show help if no arguments are provided
 if (!process.argv.slice(2).length) {
   program.outputHelp()
 }
