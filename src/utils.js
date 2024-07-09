@@ -8,6 +8,8 @@ const readData = (filepath) => {
   return fs.readFileSync(resolvedPath, 'utf-8');
 };
 
+const getExtention = (filepath) => path.extname(filepath).slice(1);
+
 const generateDiff = (obj1, obj2) => {
   const keys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)));
   const diff = keys.map((key) => {
@@ -31,4 +33,4 @@ const generateDiff = (obj1, obj2) => {
   return diff;
 };
 
-export { readData, generateDiff };
+export { readData, generateDiff, getExtention };
