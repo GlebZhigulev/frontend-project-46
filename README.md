@@ -17,7 +17,7 @@ gendiff is a command-line utility for comparing configuration files in JSON and 
 
 # Required:
 
-NodeJS version: any
+NodeJS version: v20.15.0
 
 ---
 
